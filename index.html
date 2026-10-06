@@ -1,1081 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Gift Hub — Амир Худойбердиев 10А</title>
-
 <style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: white;
-    background:
-        radial-gradient(circle at top left, #29104f, transparent 40%),
-        linear-gradient(135deg, #080812, #11152b);
-    min-height: 100vh;
-}
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(8,8,18,.9);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid #ffffff15;
-}
-
-.header {
-    max-width: 1200px;
-    margin: auto;
-    padding: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: 900;
-}
-
-.logo span {
-    color: #9b6cff;
-}
-
-nav {
-    display: flex;
-    gap: 7px;
-    flex-wrap: wrap;
-}
-
-button {
-    border: 0;
-    border-radius: 12px;
-    padding: 11px 15px;
-    background: #25233d;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    transition: .2s;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    background: #393257;
-}
-
-.active {
-    background: #8055e8 !important;
-}
-
-main {
-    max-width: 1200px;
-    margin: auto;
-    padding: 25px 16px 60px;
-}
-
-.screen {
-    display: none;
-}
-
-.screen.active {
-    display: block;
-}
-
-.hero {
-    padding: 35px;
-    border-radius: 25px;
-    background: linear-gradient(135deg, #321366, #12304c);
-    box-shadow: 0 20px 70px #0008;
-    margin-bottom: 25px;
-}
-
-.hero h1 {
-    font-size: clamp(35px, 7vw, 65px);
-    margin: 0;
-}
-
-.hero p {
-    color: #d0ccdd;
-    font-size: 18px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 16px;
-}
-
-.card {
-    background: linear-gradient(150deg, #19182b, #10101c);
-    border: 1px solid #ffffff10;
-    border-radius: 20px;
-    padding: 20px;
-    min-height: 220px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.icon {
-    font-size: 48px;
-}
-
-.card h3 {
-    margin-bottom: 7px;
-}
-
-.card p {
-    color: #aaa7b9;
-    line-height: 1.4;
-}
-
-.play {
-    background: #8055e8;
-    width: 100%;
-}
-
-.panel {
-    background: #11111f;
-    border: 1px solid #ffffff10;
-    border-radius: 22px;
-    padding: 25px;
-    box-shadow: 0 15px 50px #0005;
-}
-
-.top {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 18px;
-}
-
-.back {
-    background: #292640;
-}
-
-.stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 15px 0;
-}
-
-.stat {
-    background: #211e36;
-    border-radius: 12px;
-    padding: 9px 13px;
-}
-
-.status {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 15px 0;
-}
-
-.score {
-    font-size: 35px;
-    font-weight: 900;
-    margin: 15px 0;
-}
-
-.ttt {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    max-width: 420px;
-    margin: 20px auto;
-}
-
-.cell {
-    height: 120px;
-    background: #26233e;
-    border-radius: 16px;
-    font-size: 60px;
-}
-
-#reactionBox {
-    height: 270px;
-    margin-top: 20px;
-    border-radius: 22px;
-    background: #5b233b;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 30px;
-    font-weight: 900;
-    cursor: pointer;
-}
-
-.chess {
-    width: min(92vw, 520px);
-    margin: 20px auto;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    border: 5px solid #594779;
-}
-
-.square {
-    aspect-ratio: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: clamp(25px, 7vw, 50px);
-    cursor: pointer;
-}
-
-.light {
-    background: #e8d5ae;
-}
-
-.dark {
-    background: #705b49;
-}
-
-.selected {
-    outline: 5px solid #a779ff;
-    outline-offset: -5px;
-}
-
-.memory {
-    display: grid;
-    grid-template-columns: repeat(4, 75px);
-    gap: 8px;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.memory button {
-    height: 75px;
-    background: #27233e;
-}
-
-.memory button.flash {
-    background: #a36eff;
-}
-
-input {
-    background: #171627;
-    border: 1px solid #ffffff20;
-    border-radius: 10px;
-    padding: 12px;
-    color: white;
-    margin: 5px;
-}
-
-.rules {
-    line-height: 1.6;
-}
-
-.rules li {
-    margin: 8px 0;
-}
-
-footer {
-    text-align: center;
-    color: #686579;
-    padding: 30px;
-}
-
-@media(max-width:650px) {
-    .header {
-        flex-direction: column;
-    }
-
-    .cell {
-        height: 95px;
-    }
-
-    .memory {
-        grid-template-columns: repeat(4, 60px);
-    }
-
-    .memory button {
-        height: 60px;
-    }
-}
+:root{--bg:#090914;--card:#151526;--card2:#1d1b32;--accent:#8b5cf6;--accent2:#5eead4;--text:#fff;--muted:#a9a7b8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0,#25104d 0,#090914 38%),#090914;color:var(--text);font-family:Inter,Arial,sans-serif;min-height:100vh}
+header{position:sticky;top:0;z-index:20;background:#090914e8;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff12}
+.head{max-width:1200px;margin:auto;padding:16px 18px;display:flex;align-items:center;gap:18px;justify-content:space-between}.logo{font-size:22px;font-weight:900}.logo span{color:#a78bfa}
+nav{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}button,.navbtn{font:inherit;color:#fff;background:#24223a;border:1px solid #ffffff10;border-radius:12px;padding:10px 14px;cursor:pointer;font-weight:700;transition:.18s}.navbtn:hover,button:hover{transform:translateY(-1px);background:#342d52}.active{background:var(--accent)!important}
+main{max-width:1200px;margin:auto;padding:28px 16px 60px}.screen{display:none}.screen.active{display:block}.hero{padding:34px 26px;border-radius:26px;background:linear-gradient(135deg,#2b1259,#122c48);box-shadow:0 20px 70px #0007;margin-bottom:22px}.hero h1{font-size:clamp(32px,7vw,60px);margin:0 0 10px}.hero p{color:#d7d4e5;font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:15px}.gamecard{background:linear-gradient(160deg,#18172a,#10101d);border:1px solid #ffffff0e;border-radius:20px;padding:19px;min-height:205px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 30px #0003}.icon{font-size:45px}.gamecard h3{margin:9px 0 5px}.gamecard p{color:var(--muted);margin:0 0 15px;line-height:1.4}.play{background:var(--accent);width:100%}
+.topline{display:flex;align-items:center;gap:10px;margin-bottom:18px}.back{background:#29263e}.panel{background:#121220;border:1px solid #ffffff10;border-radius:22px;padding:22px;box-shadow:0 15px 45px #0004}.panel h2{margin-top:0}
+.status{font-size:19px;font-weight:800;margin:14px 0}.score{font-size:32px;font-weight:900;margin:10px 0}.muted{color:var(--muted)}
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:420px;margin:20px auto}.cell{height:120px;border:0;border-radius:16px;background:#24213a;font-size:58px;display:flex;align-items:center;justify-content:center;cursor:pointer}.cell:hover{background:#302b4b}
+#reactionBox{height:270px;border-radius:22px;background:#54233a;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;text-align:center;cursor:pointer;user-select:none}
+.stats{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.stat{background:#211e35;padding:9px 12px;border-radius:12px}
+.chessboard{width:min(92vw,520px);display:grid;grid-template-columns:repeat(8,1fr);margin:18px auto;border:5px solid #59477b}.sq{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:clamp(25px,7vw,50px);cursor:pointer;position:relative}.whiteSq{background:#ead9b5}.blackSq{background:#705b49}.selected{outline:5px solid #a78bfa;outline-offset:-5px}.legal{box-shadow:inset 0 0 0 5px #5eead4}
+.rules{line-height:1.55}.rules h3{margin-bottom:5px}.rules li{margin:8px 0}
+.memory{display:grid;grid-template-columns:repeat(4,75px);gap:8px;justify-content:center;margin:20px 0}.mcell{height:75px;border:0;border-radius:13px;background:#25223b}.mcell.flash{background:#a78bfa}.mcell.correct{background:#14b8a6}
+.controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0}input,select{background:#171627;border:1px solid #ffffff1c;color:#fff;border-radius:11px;padding:11px}
+footer{text-align:center;color:#66637a;padding:30px}
+@media(max-width:650px){.head{flex-direction:column;align-items:stretch}.cell{height:95px}.memory{grid-template-columns:repeat(4,60px)}.mcell{height:60px}}
 </style>
 </head>
-
 <body>
-
-<header>
-<div class="header">
-<div class="logo">
-🎁 <span>Gift</span> Hub
-</div>
-
+<header><div class="head">
+<div class="logo">🎁 <span>Gift</span> Hub</div>
 <nav>
-<button class="active" onclick="showPage('home')">Главная</button>
-<button onclick="showPage('games')">🎮 Игры</button>
-<button onclick="showPage('rules')">📖 Правила</button>
-<button onclick="toggleSound()" id="soundButton">🔊</button>
+<button class="navbtn active" data-screen="home">Главная</button>
+<button class="navbtn" data-screen="games">🎮 Игры</button>
+<button class="navbtn" data-screen="rules">📖 Правила</button>
+<button id="sound">🔊</button>
 </nav>
-</div>
-</header>
+</div></header>
 
 <main>
 <section id="home" class="screen active">
-<div class="hero">
-<h1>Gift Hub</h1>
-<p>
-Игровой сайт Амира Худойбердиева, 10А.
-Выбирай игру и устанавливай свои рекорды.
-</p>
-
-<div class="stats">
-<div class="stat">🎮 <b id="gameCount">12</b> игр</div>
-<div class="stat">⚡ Лучшее:<b id="homeBest">—</b></div>
-</div>
-
-<button class="play" onclick="showPage('games')">Открыть игры →</button>
-</div>
-
+<div class="hero"><h1>Gift Hub</h1><p>Игровой сайт Амира Худойбердиева, 10А. Выбирай игру — она откроется отдельно.</p>
+<div class="stats"><div class="stat">🎮 <b id="gameCount">12</b> игр</div><div class="stat">⚡ Лучшее: <b id="heroBest">—</b></div></div>
+<button class="play" onclick="show('games')">Открыть игры →</button></div>
 <div class="grid">
-<div class="card">
-<div>
-<div class="icon">⚡</div>
-<h3>Тест реакции</h3>
-<p>Проверь скорость своей реакции.</p>
-</div>
-<button class="play" onclick="openGame('reaction')">Играть</button>
-</div>
-
-<div class="card">
-<div>
-<div class="icon">♟️</div>
-<h3>Шахматы</h3>
-<p>Шахматы с режимом против бота.</p>
-</div>
-<button class="play" onclick="openGame('chess')">Играть</button>
-</div>
-
-<div class="card">
-<div>
-<div class="icon">❌</div>
-<h3>Крестики-нолики</h3>
-<p>Два игрока или компьютер.</p>
-</div>
-<button class="play" onclick="openGame('ttt')">Играть</button>
-</div>
+<div class="gamecard"><div><div class="icon">⚡</div><h3>Тест реакции</h3><p>Узнай скорость своей реакции.</p></div><button class="play" onclick="openGame('reaction')">Играть</button></div>
+<div class="gamecard"><div><div class="icon">♟️</div><h3>Шахматы</h3><p>Доска, правила и режим против бота.</p></div><button class="play" onclick="openGame('chess')">Играть</button></div>
+<div class="gamecard"><div><div class="icon">❌</div><h3>Крестики-нолики</h3><p>Два игрока или сильный бот.</p></div><button class="play" onclick="openGame('ttt')">Играть</button></div>
 </div>
 </section>
 
 <section id="games" class="screen">
-<h2>🎮 Все игры</h2>
-<div class="grid" id="gameList"></div>
+<div class="topline"><h2>🎮 Все игры</h2></div>
+<div class="grid" id="gameGrid"></div>
 </section>
 
-<section id="game" class="screen">
-<div class="top">
-<button class="back" onclick="showPage('games')">← Игры</button>
-<h2 id="gameTitle">Игра</h2>
-</div>
-<div id="gameContent"></div>
-</section>
+<section id="game" class="screen"><div class="topline"><button class="back" onclick="show('games')">← Игры</button><h2 id="gameTitle">Игра</h2></div><div id="gameContent"></div></section>
 
 <section id="rules" class="screen">
-<div class="panel rules">
-<h2>📖 Правила</h2>
-<h3>♟️ Шахматы</h3>
-<ul>
-<li>Белые ходят первыми.</li>
-<li>Пешка ходит вперёд и бьёт по диагонали.</li>
-<li>Ладья ходит по горизонтали и вертикали.</li>
-<li>Слон ходит по диагонали.</li>
-<li>Конь ходит буквой «Г».</li>
-<li>Ферзь ходит как ладья и слон.</li>
-<li>Король ходит на одну клетку.</li>
-<li>Шах — угроза королю.</li>
-<li>Мат — король не может спастись от шаха.</li>
-</ul>
-
-<h3>❌ Крестики-нолики</h3>
-<p>Нужно поставить три своих символа подряд: по горизонтали, вертикали или диагонали.</p>
-
-<h3>⚡ Реакция</h3>
-<p>Дождись зелёного экрана и нажми как можно быстрее. Чем меньше миллисекунд — тем лучше.</p>
-
-<h3>🧠 Память</h3>
-<p>Запомни последовательность подсвеченных клеток и повтори её.</p>
-</div>
-</section>
+<div class="panel rules"><h2>📖 Правила игр</h2>
+<h3>♟️ Шахматы</h3><ul><li>Белые ходят первыми.</li><li>Пешка идёт вперёд и бьёт по диагонали.</li><li>Ладья ходит прямо, слон — по диагонали.</li><li>Конь ходит буквой «Г» и перепрыгивает фигуры.</li><li>Ферзь ходит как ладья и слон.</li><li>Король ходит на одну клетку и не может попасть под шах.</li><li>Шах — угроза королю, мат — положение, из которого король не может спастись.</li><li>В настоящих шахматах есть рокировка, взятие на проходе и превращение пешки.</li></ul>
+<h3>❌ Крестики-нолики</h3><p>Собери три своих символа в ряд по горизонтали, вертикали или диагонали.</p>
+<h3>⚡ Реакция</h3><p>Жди зелёного сигнала. Нажми как можно быстрее. Меньше миллисекунд = лучше.</p>
+<h3>🧠 Память</h3><p>Запомни подсветившуюся последовательность и повтори её. С каждым уровнем она становится длиннее.</p>
+<h3>🔢 Угадай число</h3><p>Компьютер загадывает число от 1 до 100. Используй подсказки «больше» и «меньше».</p>
+</div></section>
 </main>
-
 <footer>Gift Hub • Амир Худойбердиев • 10А</footer>
 
 <script>
-let soundOn = true;
-
-function beep(freq = 600, duration = 0.08) {
-    if (!soundOn) return;
-
-    try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        const audio = new AudioContext();
-        const oscillator = audio.createOscillator();
-        const gain = audio.createGain();
-
-        oscillator.frequency.value = freq;
-        gain.gain.value = 0.05;
-        oscillator.connect(gain);
-        gain.connect(audio.destination);
-        oscillator.start();
-        oscillator.stop(audio.currentTime + duration);
-    } catch (e) {}
-}
-
-function toggleSound() {
-    soundOn = !soundOn;
-    document.getElementById("soundButton").textContent = soundOn ? "🔊" : "🔇";
-}
-
-function showPage(page) {
-    document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
-    document.getElementById(page).classList.add("active");
-    window.scrollTo(0, 0);
-}
-
-const games = [
-    { id: "ttt", icon: "❌", name: "Крестики-нолики", desc: "Игрок против игрока или бот." },
-    { id: "chess", icon: "♟️", name: "Шахматы", desc: "Шахматная доска и режим против бота." },
-    { id: "reaction", icon: "⚡", name: "Тест реакции", desc: "Измерь свою реакцию." },
-    { id: "memory", icon: "🧠", name: "Память", desc: "Запоминай последовательности." },
-    { id: "guess", icon: "🔢", name: "Угадай число", desc: "Число от 1 до 100." },
-    { id: "clicker", icon: "🚀", name: "Космический кликер", desc: "Набери как можно больше очков." },
-    { id: "rps", icon: "✊", name: "Камень, ножницы, бумага", desc: "Сразись с компьютером." },
-    { id: "math", icon: "➗", name: "Быстрая математика", desc: "Решай примеры." },
-    { id: "colors", icon: "🎨", name: "Цветовой тест", desc: "Найди правильный цвет." },
-    { id: "dice", icon: "🎲", name: "Кубики", desc: "Бросай кубик против бота." },
-    { id: "higher", icon: "🃏", name: "Выше или ниже", desc: "Угадай следующую карту." },
-    { id: "typing", icon: "⌨️", name: "Скоропечатание", desc: "Проверь скорость печати." }
+const games=[
+{id:'ttt',icon:'❌',name:'Крестики-нолики',desc:'Классика: 2 игрока или бот.'},
+{id:'chess',icon:'♟️',name:'Шахматы',desc:'Учебная доска + режим против бота.'},
+{id:'reaction',icon:'⚡',name:'Тест реакции',desc:'Измерь реакцию в миллисекундах.'},
+{id:'memory',icon:'🧠',name:'Память',desc:'Повторяй всё более длинную последовательность.'},
+{id:'guess',icon:'🔢',name:'Угадай число',desc:'Найди число от 1 до 100.'},
+{id:'clicker',icon:'🚀',name:'Космический кликер',desc:'Набирай очки кликами.'},
+{id:'rps',icon:'✊',name:'Камень, ножницы, бумага',desc:'Сыграй против компьютера.'},
+{id:'quickmath',icon:'➗',name:'Быстрая математика',desc:'Решай примеры на скорость.'},
+{id:'colors',icon:'🎨',name:'Цветовой тест',desc:'Найди нужный цвет среди вариантов.'},
+{id:'dice',icon:'🎲',name:'Кубики',desc:'Бросай кубики и соревнуйся с ботом.'},
+{id:'higher',icon:'📈',name:'Выше или ниже',desc:'Угадай, какая карта будет следующей.'},
+{id:'typing',icon:'⌨️',name:'Скоропечатание',desc:'Проверь скорость набора текста.'}
 ];
-
-document.getElementById("gameCount").textContent = games.length;
-document.getElementById("gameList").innerHTML = games.map(game => `
-<div class="card">
-<div>
-<div class="icon">${game.icon}</div>
-<h3>${game.name}</h3>
-<p>${game.desc}</p>
-</div>
-<button class="play" onclick="openGame('${game.id}')">Открыть игру →</button>
-</div>
-`).join("");
-
-function openGame(id) {
-    showPage("game");
-    const game = games.find(g => g.id === id);
-    document.getElementById("gameTitle").textContent = game.icon + " " + game.name;
-    const content = document.getElementById("gameContent");
-    content.innerHTML = "";
-
-    if (id === "ttt") gameTTT();
-    if (id === "chess") gameChess();
-    if (id === "reaction") gameReaction();
-    if (id === "memory") gameMemory();
-    if (id === "guess") gameGuess();
-    if (id === "clicker") gameClicker();
-    if (id === "rps") gameRPS();
-    if (id === "math") gameMath();
-    if (id === "colors") gameColors();
-    if (id === "dice") gameDice();
-    if (id === "higher") gameHigher();
-    if (id === "typing") gameTyping();
-}
-
-let tttBoard = [];
-let tttTurn = "X";
-let botMode = false;
-
-function gameTTT() {
-    document.getElementById("gameContent").innerHTML = `
-<div class="panel">
-<div>
-<button id="twoPlayers">👥 2 игрока</button>
-<button id="botButton">🤖 Против бота</button>
-<button onclick="resetTTT()">🔄 Новая игра</button>
-</div>
-<div id="tttStatus" class="status"></div>
-<div id="tttBoard" class="ttt"></div>
-</div>`;
-
-    botMode = false;
-    resetTTT();
-
-    document.getElementById("twoPlayers").onclick = () => {
-        botMode = false;
-        resetTTT();
-    };
-
-    document.getElementById("botButton").onclick = () => {
-        botMode = true;
-        resetTTT();
-    };
-}
-
-function resetTTT() {
-    tttBoard = Array(9).fill("");
-    tttTurn = "X";
-    drawTTT();
-    document.getElementById("tttStatus").textContent = "Ход ❌";
-}
-
-function drawTTT() {
-    document.getElementById("tttBoard").innerHTML = tttBoard.map((value, index) => `
-        <button class="cell" onclick="tttClick(${index})">${value}</button>
-    `).join("");
-}
-
-function checkWinner(board) {
-    const lines = [
-        [0,1,2],[3,4,5],[6,7,8],
-        [0,3,6],[1,4,7],[2,5,8],
-        [0,4,8],[2,4,6]
-    ];
-
-    for (const line of lines) {
-        const [a,b,c] = line;
-        if (board[a] && board[a] === board[b] && board[a] === board[c]) return board[a];
-    }
-
-    if (board.every(Boolean)) return "draw";
-    return null;
-}
-
-function tttClick(index) {
-    if (tttBoard[index] || checkWinner(tttBoard)) return;
-
-    tttBoard[index] = tttTurn;
-    beep();
-    drawTTT();
-
-    let winner = checkWinner(tttBoard);
-    if (winner) {
-        finishTTT(winner);
-        return;
-    }
-
-    if (botMode && tttTurn === "X") {
-        tttTurn = "O";
-        setTimeout(botTTT, 300);
-    } else {
-        tttTurn = tttTurn === "X" ? "O" : "X";
-        document.getElementById("tttStatus").textContent = "Ход " + (tttTurn === "X" ? "❌" : "⭕");
-    }
-}
-
-function botTTT() {
-    const free = tttBoard.map((v, i) => v ? null : i).filter(v => v !== null);
-    if (!free.length) return;
-
-    let move = free.find(i => canWinTTT("O", i));
-    if (move === undefined) move = free.find(i => canWinTTT("X", i));
-    if (move === undefined) {
-        if (tttBoard[4] === "") move = 4;
-        else move = free[Math.floor(Math.random() * free.length)];
-    }
-
-    tttBoard[move] = "O";
-    beep(350);
-    drawTTT();
-
-    const winner = checkWinner(tttBoard);
-    if (winner) {
-        finishTTT(winner);
-        return;
-    }
-
-    tttTurn = "X";
-    document.getElementById("tttStatus").textContent = "Твой ход ❌";
-}
-
-function canWinTTT(player, index) {
-    const test = [...tttBoard];
-    test[index] = player;
-    return checkWinner(test) === player;
-}
-
-function finishTTT(winner) {
-    document.getElementById("tttStatus").textContent = winner === "draw"
-        ? "🤝 Ничья!"
-        : winner === "X"
-        ? "🎉 ❌ победил!"
-        : "🤖 ⭕ победил!";
-}
-
-let reactionTimes = [];
-let reactionWaiting = false;
-let reactionStartTime = 0;
-let reactionTimer;
-
-function gameReaction() {
-    reactionTimes = JSON.parse(localStorage.getItem("reactionTimes") || "[]");
-    document.getElementById("gameContent").innerHTML = `
-<div class="panel">
-<p>Нажми «Старт», дождись зелёного и нажми как можно быстрее.</p>
-<button onclick="startReaction()">Старт</button>
-<div id="reactionBox">Готов?</div>
-<div id="reactionResult" class="score">—</div>
-<div id="reactionRating" class="status"></div>
-<div class="stats">
-<div class="stat">Попыток:<b id="reactionTries">0</b></div>
-<div class="stat">Среднее:<b id="reactionAverage">—</b></div>
-<div class="stat">Рекорд:<b id="reactionBest">—</b></div>
-</div>
-</div>`;
-
-    updateReactionStats();
-    document.getElementById("reactionBox").onclick = reactionClick;
-}
-
-function startReaction() {
-    clearTimeout(reactionTimer);
-    reactionWaiting = true;
-    reactionStartTime = 0;
-    const box = document.getElementById("reactionBox");
-
-    box.style.background = "#65233b";
-    box.textContent = "Жди зелёный...";
-
-    reactionTimer = setTimeout(() => {
-        reactionWaiting = false;
-        reactionStartTime = performance.now();
-        box.style.background = "#12834d";
-        box.textContent = "🟢 ЖМИ!";
-        beep(900, .1);
-    }, 1000 + Math.random() * 3000);
-}
-
-function reactionClick() {
-    const box = document.getElementById("reactionBox");
-
-    if (reactionWaiting) {
-        clearTimeout(reactionTimer);
-        reactionWaiting = false;
-        box.textContent = "❌ Слишком рано!";
-        box.style.background = "#65233b";
-        return;
-    }
-
-    if (!reactionStartTime) return;
-
-    const time = Math.round(performance.now() - reactionStartTime);
-    reactionStartTime = 0;
-    reactionTimes.push(time);
-    localStorage.setItem("reactionTimes", JSON.stringify(reactionTimes.slice(-50)));
-
-    box.textContent = "Результат: " + time + " мс";
-    box.style.background = "#25233d";
-
-    let rating;
-    if (time < 200) rating = "🔥 МОЛНИЯ!";
-    else if (time < 300) rating = "😎 Отлично!";
-    else if (time < 400) rating = "👍 Хорошо!";
-    else if (time < 500) rating = "🙂 Нормально";
-    else rating = "🐢 Можно быстрее!";
-
-    document.getElementById("reactionResult").textContent = time + " мс";
-    document.getElementById("reactionRating").textContent = rating;
-    updateReactionStats();
-    beep(800, .1);
-}
-
-function updateReactionStats() {
-    const count = reactionTimes.length;
-    const best = count ? Math.min(...reactionTimes) : null;
-    const average = count ? Math.round(reactionTimes.reduce((a, b) => a + b, 0) / count) : null;
-
-    if (document.getElementById("reactionTries")) document.getElementById("reactionTries").textContent = count;
-    if (document.getElementById("reactionAverage")) document.getElementById("reactionAverage").textContent = average ? average + " мс" : "—";
-    if (document.getElementById("reactionBest")) document.getElementById("reactionBest").textContent = best ? best + " мс" : "—";
-
-    document.getElementById("homeBest").textContent = best ? best + " мс" : "—";
-}
-
-let secretNumber;
-let guessAttempts;
-
-function gameGuess() {
-    document.getElementById("gameContent").innerHTML = `
-<div class="panel">
-<h3>🔢 Угадай число</h3>
-<p>Я загадал число от 1 до 100.</p>
-<input id="guessInput" type="number" placeholder="Твоё число">
-<button onclick="makeGuess()">Проверить</button>
-<button onclick="newGuessGame()">Новая игра</button>
-<div id="guessResult" class="status"></div>
-</div>`;
-
-    newGuessGame();
-}
-
-function newGuessGame() {
-    secretNumber = Math.floor(Math.random() * 100) + 1;
-    guessAttempts = 0;
-    if (document.getElementById("guessResult")) document.getElementById("guessResult").textContent = "Число загадано!";
-}
-
-function makeGuess() {
-    const number = Number(document.getElementById("guessInput").value);
-    guessAttempts++;
-
-    if (number === secretNumber) {
-        document.getElementById("guessResult").textContent = "🎉 Угадал за " + guessAttempts + " попыток!";
-        beep(900);
-    } else if (number < secretNumber) {
-        document.getElementById("guessResult").textContent = "⬆️ Больше!";
-    } else {
-        document.getElementById("guessResult").textContent = "⬇️ Меньше!";
-    }
-}
-
-let clickScore = 0;
-
-function gameClicker() {
-    clickScore = 0;
-    document.getElementById("gameContent").innerHTML = `
-<div class="panel" style="text-align:center">
-<h2>🚀 Космический кликер</h2>
-<div id="clickScore" class="score">0</div>
-<button style="font-size:28px;padding:25px" onclick="clickRocket()">🚀 ЖМИ!</button>
-</div>`;
-}
-
-function clickRocket() {
-    clickScore++;
-    document.getElementById("clickScore").textContent = clickScore;
-    beep(600, .03);
-}
-
-function gameRPS() {
-    document.getElementById("gameContent").innerHTML = `
-<div class="panel" style="text-align:center">
-<h2>✊ Камень, ножницы, бумага</h2>
-<button onclick="playRPS('Камень')">🪨</button>
-<button onclick="playRPS('Ножницы')">✂️</button>
-<button onclick="playRPS('Бумага')">📄</button>
-<div id="rpsResult" class="status">Выбирай!</div>
-</div>`;
-}
-
-function playRPS(player) {
-    const choices = ["Камень", "Ножницы", "Бумага"];
-    const bot = choices[Math.floor(Math.random() * choices.length)];
-    let result;
-
-    if (player === bot) result = "🤝 Ничья!";
-    else if (
-        (player === "Камень" && bot === "Ножницы") ||
-        (player === "Ножницы" && bot === "Бумага") ||
-        (player === "Бумага" && bot === "Камень")
-    ) result = "🎉 Ты победил!";
-    else result = "🤖 Бот победил!";
-
-    document.getElementById("rpsResult").textContent = "Ты: " + player + " | Бот: " + bot + " | " + result;
-}
-
-let mathA;
-let mathB;
-let mathOperator;
-
-function gameMath() {
-    document.getElementById("gameContent").innerHTML = `
-<div class="panel">
-<h2>➗ Быстрая математика</h2>
-<div id="mathQuestion" class="score"></div>
-<input id="mathAnswer" type="number">
-<button onclick="checkMath()">Ответить</button>
-<div id="mathResult" class="status"></div>
-</div>`;
-    newMath();
-}
-
-function newMath() {
-    mathA = Math.floor(Math.random() * 30) + 1;
-    mathB = Math.floor(Math.random() * 20) + 1;
-    mathOperator = Math.random() < 0.5 ? "+" : "-";
-
-    document.getElementById("mathQuestion").textContent = mathA + " " + mathOperator + " " + mathB + " = ?";
-}
-
-function checkMath() {
-    const answer = Number(document.getElementById("mathAnswer").value);
-    const correct = mathOperator === "+" ? mathA + mathB : mathA - mathB;
-
-    document.getElementById("mathResult").textContent = answer === correct ? "✅ Верно!" : "❌ Неверно! Ответ: " + correct;
-    newMath();
-}
-
-const chessPieces = {
-    r: "♜", n: "♞", b: "♝", q: "♛", k: "♚", p: "♟",
-    R: "♖", N: "♘", B: "♗", Q: "♕", K: "♔", P: "♙"
-};
-
-let chessBoard = [];
-let chessSelected = null;
-let chessTurn = "white";
-let chessBotMode = false;
-
-function gameChess() {
-    document.getElementById("gameContent").innerHTML = `
-<div class="panel">
-<button id="chess2">👥 2 игрока</button>
-<button id="chessBot">🤖 Против бота</button>
-<button onclick="resetChess()">🔄 Новая партия</button>
-<div id="chessStatus" class="status">Ход белых</div>
-<div id="chessBoard" class="chess"></div>
-<p>Выбирай фигуру и клетку назначения.</p>
-</div>`;
-
-    chessBotMode = false;
-    resetChess();
-
-    document.getElementById("chess2").onclick = () => {
-        chessBotMode = false;
-        resetChess();
-    };
-
-    document.getElementById("chessBot").onclick = () => {
-        chessBotMode = true;
-        resetChess();
-    };
-}
-
-function resetChess() {
-    chessBoard = [
-        "r","n","b","q","k","b","n","r",
-        "p","p","p","p","p","p","p","p",
-        "","","","","","","","",
-        "","","","","","","","",
-        "","","","","","","","",
-        "","","","","","","","",
-        "P","P","P","P","P","P","P","P",
-        "R","N","B","Q","K","B","N","R"
-    ];
-    chessSelected = null;
-    chessTurn = "white";
-    drawChess();
-}
-
-function drawChess() {
-    const board = document.getElementById("chessBoard");
-    if (!board) return;
-
-    board.innerHTML = chessBoard.map((piece, index) => {
-        const square = document.createElement("div");
-        square.className = "square " + (((Math.floor(index / 8) + index) % 2) ? "dark" : "light");
-        if (index === chessSelected) square.classList.add("selected");
-        square.textContent = chessPieces[piece] || "";
-        square.onclick = () => chessClick(index);
-        return square;
-    }).join("");
-}
-
-function chessClick(index) {
-    const piece = chessBoard[index];
-
-    if (chessSelected === null) {
-        if (!piece) return;
-        const isWhite = "RNBQKP".includes(piece);
-        if ((chessTurn === "white") !== isWhite) return;
-        chessSelected = index;
-        drawChess();
-        return;
-    }
-
-    if (index === chessSelected) {
-        chessSelected = null;
-        drawChess();
-        return;
-    }
-
-    const target = chessBoard[index];
-    if (target && ("RNBQKP".includes(target) === "RNBQKP".includes(chessBoard[chessSelected]))) {
-        chessSelected = index;
-        drawChess();
-        return;
-    }
-
-    chessBoard[index] = chessBoard[chessSelected];
-    chessBoard[chessSelected] = "";
-    chessSelected = null;
-
-    chessTurn = chessTurn === "white" ? "black" : "white";
-    document.getElementById("chessStatus").textContent = "Ход " + (chessTurn === "white" ? "белых" : "чёрных");
-    drawChess();
-
-    if (chessBotMode && chessTurn === "black") setTimeout(chessBotMove, 400);
-}
-
-function chessBotMove() {
-    const pieces = [];
-    chessBoard.forEach((piece, index) => {
-        if ("rnbqkp".includes(piece)) pieces.push(index);
-    });
-
-    if (!pieces.length) return;
-
-    const from = pieces[Math.floor(Math.random() * pieces.length)];
-    const free = chessBoard.map((piece, index) => piece ? null : index).filter(index => index !== null);
-    if (!free.length) return;
-
-    const to = free[Math.floor(Math.random() * free.length)];
-    chessBoard[to] = chessBoard[from];
-    chessBoard[from] = "";
-    chessTurn = "white";
-
-    document.getElementById("chessStatus").textContent = "Ход белых";
-    drawChess();
-}
-
-let memorySequence = [];
-let memoryInput = [];
-let memoryLock = false;
-
-function gameMemory() {
-    document.getElementById("gameContent").innerHTML = `
-<div class="panel">
-<button onclick="startMemory()">Начать</button>
-<div id="memoryStatus" class="status"></div>
-<div id="memoryGrid" class="memory"></div>
-</div>`;
-    startMemory();
-}
-
-function startMemory() {
-    memorySequence = [Math.floor(Math.random() * 16)];
-    memoryInput = [];
-    memoryLock = true;
-    drawMemory();
-    document.getElementById("memoryStatus").textContent = "Смотри...";
-    setTimeout(() => flashMemory(0), 500);
-}
-
-function drawMemory() {
-    document.getElementById("memoryGrid").innerHTML = Array.from({ length: 16 }, (_, i) => `
-        <button id="memory${i}" onclick="memoryClick(${i})"></button>
-    `).join("");
-}
-
-function flashMemory(index) {
-    if (index >= memorySequence.length) {
-        memoryLock = false;
-        document.getElementById("memoryStatus").textContent = "Твой ход!";
-        return;
-    }
-
-    const button = document.getElementById("memory" + memorySequence[index]);
-    button.classList.add("flash");
-    beep(500);
-
-    setTimeout(() => {
-        button.classList.remove("flash");
-        setTimeout(() => flashMemory(index + 1), 120);
-    }, 350);
-}
-
-function memoryClick(index) {
-    if (memoryLock) return;
-
-    memoryInput.push(index);
-
-    if (index !== memorySequence[memoryInput.length - 1]) {
-        memoryLock = true;
-        document.getElementById("memoryStatus").textContent = "❌ Ошибка! Уровень: " + memorySequence.length;
-        return;
-    }
-
-    if (memoryInput.length === memorySequence.length) {
-        memorySequence.push(Math.floor(Math.random() * 16));
-        memoryInput = [];
-        memoryLock = true;
-        document.getElementById("memoryStatus").textContent = "🔥 Правильно!";
-        setTimeout(() => flashMemory(0), 500);
-    }
-}
-
-function gameColors() {
-    const colors = ["Красный", "Синий", "Зелёный", "Жёлтый", "Фиолетовый"];
-    const target = colors[Math.floor(Math.random() * colors.length)];
-
-    document.getElementById("gameContent").innerHTML = `
-<div class="panel" style="text-align:center">
-<h2>🎨 Найди цвет</h2>
-<p>Найди: <b>${target}</b></p>
-${colors.map(color => `
-<button onclick="colorAnswer('${color}', '${target}')">${color}</button>
-`).join("")}
-<div id="colorResult" class="status"></div>
-</div>`;
-}
-
-function colorAnswer(answer, target) {
-    document.getElementById("colorResult").textContent = answer === target ? "🎉 Правильно!" : "❌ Неправильно!";
-}
-
-function gameDice() {
-    const player = Math.floor(Math.random() * 6) + 1;
-    const bot = Math.floor(Math.random() * 6) + 1;
-
-    document.getElementById("gameContent").innerHTML = `
-<div class="panel" style="text-align:center">
-<h2>🎲 Кубики</h2>
-<div class="score">Ты: ${player}</div>
-<div class="score">Бот: ${bot}</div>
-<div class="status">${player > bot ? "🏆 Ты победил!" : player < bot ? "🤖 Бот победил!" : "🤝 Ничья!"}</div>
-<button onclick="gameDice()">🎲 Бросить снова</button>
-</div>`;
-}
-
-function gameHigher() {
-    const current = Math.floor(Math.random() * 13) + 1;
-    const next = Math.floor(Math.random() * 13) + 1;
-
-    document.getElementById("gameContent").innerHTML = `
-<div class="panel" style="text-align:center">
-<h2>🃏 Выше или ниже?</h2>
-<div class="score">🃏 ${current}</div>
-<button onclick="higherAnswer('higher', ${current}, ${next})">⬆️ Выше</button>
-<button onclick="higherAnswer('lower', ${current}, ${next})">⬇️ Ниже</button>
-<div id="higherResult" class="status"></div>
-</div>`;
-}
-
-function higherAnswer(answer, current, next) {
-    const correct = answer === "higher" ? next > current : next < current;
-    document.getElementById("higherResult").textContent = correct ? "🎉 Верно! Следующая карта: " + next : "❌ Ошибка! Следующая карта: " + next;
-}
-
-function gameTyping() {
-    const text = "Gift Hub — играй и улучшай свои рекорды!";
-    document.getElementById("gameContent").innerHTML = `
-<div class="panel">
-<h3>⌨️ Скоропечатание</h3>
-<p>${text}</p>
-<input id="typingInput" style="width:90%" placeholder="Напечатай текст">
-<div id="typingResult" class="status"></div>
-</div>`;
-
-    let start = null;
-    document.getElementById("typingInput").oninput = event => {
-        if (!start) start = performance.now();
-        if (event.target.value === text) {
-            const seconds = (performance.now() - start) / 1000;
-            const speed = Math.round(text.length / seconds * 60);
-            document.getElementById("typingResult").textContent = "🔥 Готово! " + speed + " знаков/мин";
-        }
-    };
-}
+document.getElementById('gameCount').textContent=games.length;
+let soundOn=true;function beep(f=550,d=.07){if(!soundOn)return;try{let C=AudioContext||webkitAudioContext,c=new C,o=c.createOscillator(),g=c.createGain();o.frequency.value=f;g.gain.value=.045;o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d)}catch(e){}}
+document.getElementById('sound').onclick=()=>{soundOn=!soundOn;document.getElementById('sound').textContent=soundOn?'🔊':'🔇';beep()};
+function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.navbtn').forEach(x=>x.classList.toggle('active',x.dataset.screen===id));scrollTo(0,0)}
+document.querySelectorAll('.navbtn').forEach(b=>b.onclick=()=>show(b.dataset.screen));
+document.getElementById('gameGrid').innerHTML=games.map(g=>`<div class="gamecard"><div><div class="icon">${g.icon}</div><h3>${g.name}</h3><p>${g.desc}</p></div><button class="play" onclick="openGame('${g.id}')">Открыть игру →</button></div>`).join('');
+function openGame(id){show('game');let g=games.find(x=>x.id===id);document.getElementById('gameTitle').textContent=g.icon+' '+g.name;let c=document.getElementById('gameContent');c.innerHTML='';({'ttt':gameTTT,'chess':gameChess,'reaction':gameReaction,'memory':gameMemory,'guess':gameGuess,'clicker':gameClicker,'rps':gameRPS,'quickmath':gameMath,'colors':gameColors,'dice':gameDice,'higher':gameHigher,'typing':gameTyping}[id])();}
+
+/* Tic tac toe: bot is a mode INSIDE the game */
+function gameTTT(){document.getElementById('gameContent').innerHTML=`<div class="panel"><div class="controls"><button id="two" class="active">👥 2 игрока</button><button id="botmode">🤖 Против бота</button><button onclick="resetT()">Новая игра</button></div><div id="tboard" class="board"></div><div id="tstat" class="status"></div></div>`;window.tmode=false;resetT();document.getElementById('two').onclick=()=>{tmode=false;resetT()};document.getElementById('botmode').onclick=()=>{tmode=true;resetT()}}
+let ta=[],tx='X',tmode=false;
+function resetT(){ta=Array(9).fill('');tx='X';drawT();document.getElementById('tstat').textContent='Ход ❌'}
+function drawT(){document.getElementById('tboard').innerHTML=ta.map((v,i)=>`<button class="cell" onclick="tclick(${i})">${v}</button>`).join('')}
+function win(a){for(let q of [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]])if(a[q[0]]&&a[q[0]]===a[q[1]]&&a[q[1]]===a[q[2]])return a[q[0]];return a.every(Boolean)?'draw':null}
+function tclick(i){if(ta[i]||win(ta))return;ta[i]=tx;beep();drawT();let w=win(ta);if(w){endT(w);return}if(tmode&&tx==='X'){tx='O';setTimeout(botT,250)}else{tx=tx==='X'?'O':'X';document.getElementById('tstat').textContent='Ход '+(tx==='X'?'❌':'⭕')}}
+function botT(){let free=ta.map((v,i)=>v?null:i).filter(x=>x!==null);let move=free.find(i=>testT('O',i))??free.find(i=>testT('X',i))??(ta[4]===''?4:free[Math.floor(Math.random()*free.length)]);ta[move]='O';beep(350);drawT();let w=win(ta);if(w)endT(w);else{tx='X';document.getElementById('tstat').textContent='Твой ход ❌'}}
+function testT(p,i){let a=[...ta];a[i]=p;return win(a)===p}function endT(w){document.getElementById('tstat').textContent=w==='draw'?'🤝 Ничья!':w==='X'?'🎉 ❌ победил!':'🤖 ⭕ победил!'}
+
+/* reaction */
+let rt=[],wait=false,start=0,timer;
+function gameReaction(){document.getElementById('gameContent').innerHTML=`<div class="panel"><p class="muted">Нажми старт, дождись зелёного и жми.</p><button onclick="reactionStart()">Старт</button><div id="reactionBox">Готов?</div><div class="score" id="rscore">—</div><div id="rrating" class="status"></div><div class="stats"><div class="stat">Попыток: <b id="rtries">0</b></div><div class="stat">Среднее: <b id="ravg">—</b></div><div class="stat">Рекорд: <b id="rbest">—</b></div></div></div>`;rt=JSON.parse(localStorage.getItem('rt')||'[]');renderR()}
+function renderR(){let b=rt.length?Math.min(...rt):null;document.getElementById('rtries').textContent=rt.length;document.getElementById('ravg').textContent=rt.length?Math.round(rt.reduce((a,b)=>a+b)/rt.length)+' мс':'—';document.getElementById('rbest').textContent=b?b+' мс':'—';document.getElementById('heroBest').textContent=b?b+' мс':'—';document.getElementById('rscore').textContent=rt.length?rt.at(-1)+' мс':'—'}
+function reactionStart(){clearTimeout(timer);let b=document.getElementById('reactionBox');wait=true;start=0;b.style.background='#6a233d';b.textContent='Жди зелёный...';timer=setTimeout(()=>{wait=false;start=performance.now();b.style.background='#14864f';b.textContent='🟢 ЖМИ!';beep(900,.1)},900+Math.random()*3200)}
+function reactionClick(){let b=document.getElementById('reactionBox');if(wait){clearTimeout(timer);wait=false;b.textContent='❌ Слишком рано!';return}if(!start)return;let ms=Math.round(performance.now()-start);start=0;rt.push(ms);localStorage.setItem('rt',JSON.stringify(rt.slice(-50)));b.style.background='#24213a';b.textContent='Ещё раз?';document.getElementById('rrating').textContent=ms<200?'🔥 МОЛНИЯ!':ms<300?'😎 Отлично!':ms<400?'👍 Хорошо!':ms<500?'🙂 Нормально':'🐢 Тренируйся!';renderR();beep(750,.1)}
+function reactionInit(){let b=document.getElementById('reactionBox');if(b)b.onclick=reactionClick}
+
+/* other games */
+function gameMemory(){document.getElementById('gameContent').innerHTML=`<div class="panel"><button onclick="memStart()">Начать</button><div id="memStatus" class="status"></div><div id="memGrid" class="memory"></div></div>`;memStart()}
+let msq=[],mu=[],mlock=false;
+function memStart(){msq=[Math.floor(Math.random()*16)];mu=[];mlock=true;document.getElementById('memStatus').textContent='Смотри...';drawMem();setTimeout(()=>flashMem(0),400)}
+function drawMem(){document.getElementById('memGrid').innerHTML=Array.from({length:16},(_,i)=>`<button class="mcell" onclick="memTap(${i})"></button>`).join('')}
+function flashMem(k){if(k>=msq.length){mlock=false;document.getElementById('memStatus').textContent='Твой ход';return}let e=document.querySelectorAll('.mcell')[msq[k]];e.classList.add('flash');beep(500+k*30);setTimeout(()=>{e.classList.remove('flash');setTimeout(()=>flashMem(k+1),100)},300)}
+function memTap(i){if(mlock)return;mu.push(i);if(i!==msq[mu.length-1]){mlock=true;document.getElementById('memStatus').textContent='❌ Ошибка. Уровень '+msq.length;return}if(mu.length===msq.length){msq.push(Math.floor(Math.random()*16));mu=[];mlock=true;document.getElementById('memStatus').textContent='🔥 Верно!';setTimeout(()=>flashMem(0),450)}}
+function gameGuess(){document.getElementById('gameContent').innerHTML=`<div class="panel"><input id="gn" type="number" placeholder="1–100"><button onclick="doGuess()">Проверить</button><div id="go" class="status"></div><button onclick="newGuess()">Новая загадка</button></div>`;newGuess()}
+let secret=1,gtries=0;function newGuess(){secret=Math.floor(Math.random()*100)+1;gtries=0;document.getElementById('go').textContent='Я загадал число!'}function doGuess(){let n=+document.getElementById('gn').value;gtries++;document.getElementById('go').textContent=n===secret?'🎉 Угадал за '+gtries+' попыток!':n<secret?'⬆️ Больше':'⬇️ Меньше'}
+let clicks=0;function gameClicker(){clicks=0;document.getElementById('gameContent').innerHTML=`<div class="panel" style="text-align:center"><div class="score" id="cs">0</div><button style="font-size:25px;padding:25px" onclick="document.getElementById('cs').textContent=++clicks">🚀 ЖМИ</button><p class="muted">Попробуй набрать максимум за 10 секунд.</p></div>`}
+function gameRPS(){document.getElementById('gameContent').innerHTML=`<div class="panel" style="text-align:center"><button onclick="rps('Камень')">🪨</button><button onclick="rps('Ножницы')">✂️</button><button onclick="rps('Бумага')">📄</button><div id="rpsout" class="status">Выбирай!</div></div>`}
+function rps(x){let a=['Камень','Ножницы','Бумага'],b=a[Math.floor(Math.random()*3)],w=x===b?'Ничья':(x==='Камень'&&b==='Ножницы')||(x==='Ножницы'&&b==='Бумага')||(x==='Бумага'&&b==='Камень')?'Ты победил!':'Бот победил!';document.getElementById('rpsout').textContent='Ты: '+x+' • Бот: '+b+' • '+w}
+function gameMath(){newMath();document.getElementById('gameContent').innerHTML=`<div class="panel"><div id="mathq" class="score"></div><input id="mathin" type="number"><button onclick="checkMath()">Ответ</button><div id="mathout" class="status"></div></div>`;newMath()}
+let ma=0,mb=0,mo='+';function newMath(){ma=Math.floor(Math.random()*30)+1;mb=Math.floor(Math.random()*20)+1;mo=Math.random()<.5?'+':'-';let q=document.getElementById('mathq');if(q)q.textContent=ma+' '+mo+' '+mb+' = ?'}function checkMath(){let n=+document.getElementById('mathin').value,ans=mo==='+'?ma+mb:ma-mb;document.getElementById('mathout').textContent=n===ans?'✅ Верно!':'❌ Ответ: '+ans;newMath()}
+function gameColors(){let colors=['Красный','Синий','Зелёный','Жёлтый','Фиолетовый'];let target=colors[Math.floor(Math.random()*5)];document.getElementById('gameContent').innerHTML=`<div class="panel" style="text-align:center"><h2>Найди: ${target}</h2>${colors.map(c=>`<button onclick="this.textContent==='${target}'?alert('🎉 Верно!'):alert('❌ Мимо!')" style="margin:5px">${c}</button>`).join('')}</div>`}
+function gameDice(){let p=Math.floor(Math.random()*6)+1,b=Math.floor(Math.random()*6)+1;document.getElementById('gameContent').innerHTML=`<div class="panel" style="text-align:center"><button onclick="gameDice()">🎲 Бросить</button><div class="score">Ты: ${p} • Бот: ${b}</div><div class="status">${p>b?'🏆 Ты выиграл!':p<b?'🤖 Бот выиграл!':'🤝 Ничья!'}</div></div>`}
+function gameHigher(){let n=Math.floor(Math.random()*13)+1;let next=Math.floor(Math.random()*13)+1;document.getElementById('gameContent').innerHTML=`<div class="panel" style="text-align:center"><div class="score">🃏 ${n}</div><p>Следующая карта будет выше или ниже?</p><button onclick="alert(next>=n?'🎉 Верно! Следующая: '+next:'❌ Ошибка. Следующая: '+next)">Выше ⬆️</button><button onclick="alert(next<=n?'🎉 Верно! Следующая: '+next:'❌ Ошибка. Следующая: '+next)">Ниже ⬇️</button></div>`}
+function gameTyping(){let text='Gift Hub — играй, тренируйся и улучшай свои рекорды!';document.getElementById('gameContent').innerHTML=`<div class="panel"><p><b>${text}</b></p><input id="typein" style="width:100%" placeholder="Напечатай текст здесь"><div id="typeout" class="status"></div></div>`;let st=0;document.getElementById('typein').oninput=e=>{if(!st)st=performance.now();if(e.target.value===text){let sec=(performance.now()-st)/1000;document.getElementById('typeout').textContent='🔥 Готово! '+Math.round(text.length/sec*60)+' знаков/мин'}}}
+
+/* chess: separate game, bot mode is inside it */
+const P={r:'♜',n:'♞',b:'♝',q:'♛',k:'♚',p:'♟',R:'♖',N:'♘',B:'♗',Q:'♕',K:'♔',P:'♙'};
+let ch=[];
+function gameChess(){document.getElementById('gameContent').innerHTML=`<div class="panel"><div class="controls"><button id="ch2" class="active">👥 2 игрока</button><button id="chbot">🤖 Против бота</button><button onclick="resetCh()">Новая партия</button></div><div id="chstat" class="status">Ход белых</div><div id="chboard" class="chessboard"></div><p class="muted">Выбирай фигуру и клетку. В режиме бота чёрные отвечают автоматически.</p></div>`;window.chbot=false;resetCh();document.getElementById('ch2').onclick=()=>{chbot=false;resetCh()};document.getElementById('chbot').onclick=()=>{chbot=true;resetCh()}}
+function resetCh(){ch=['r','n','b','q','k','b','n','r',...'pppppppp',...Array(32).fill(''),'PPPPPPPP','RNBQKBNR'];chsel=null;cht='w';drawCh()}
+let chsel=null,cht='w',chbot=false;
+function drawCh(){let b=document.getElementById('chboard');if(!b)return;b.innerHTML=ch.map((p,i)=>{let d=document.createElement('div');d.className='sq '+((Math.floor(i/8)+i)%2?'blackSq':'whiteSq');if(i===chsel)d.classList.add('selected');d.textContent=P[p]||'';d.onclick=()=>chClick(i);return d}).join('')}
+function chClick(i){let p=ch[i];if(chsel===null){if(!p)return;let white='RNBQKP'.includes(p);if((cht==='w')!==white)return;chsel=i;drawCh();return}if(i===chsel){chsel=null;drawCh();return}let same=ch[i]&&('RNBQKP'.includes(ch[i])===('RNBQKP'.includes(ch[chsel])));if(same){chsel=i;drawCh();return}ch[i]=ch[chsel];ch[chsel]='';chsel=null;cht=cht==='w'?'b':'w';document.getElementById('chstat').textContent='Ход '+(cht==='w'?'белых':'чёрных');drawCh();if(chbot&&cht==='b')setTimeout(chBot,350)}
+function chBot(){let own=[];ch.forEach((p,i)=>{if('rnbqkp'.includes(p))own.push(i)});if(!own.length)return;let from=own[Math.floor(Math.random()*own.length)],free=ch.map((p,i)=>p?null:i).filter(x=>x!==null);if(!free.length)return;let to=free[Math.floor(Math.random()*free.length)];ch[to]=ch[from];ch[from]='';cht='w';document.getElementById('chstat').textContent='Ход белых';drawCh()}
+
+setTimeout(()=>{if(document.getElementById('gameTitle')){}},10);
+const oldOpen=openGame;window.openGame=function(id){oldOpen(id);if(id==='reaction')setTimeout(reactionInit,20)};
 </script>
-
 </body>
 </html>
